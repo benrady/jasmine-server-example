@@ -1,0 +1,6 @@
+#!/bin/bash
+
+binDir=`dirname $0`
+rootDir=$binDir/..
+
+env NODE_PATH=$rootDir/app node $rootDir/app/siren.js

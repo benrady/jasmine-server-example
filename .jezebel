@@ -1,0 +1,32 @@
+var fs = require('fs');
+var path = require('path');
+var rootDir = path.dirname(fs.realpathSync(__filename));
+require.paths.unshift(path.join(rootDir, "app"));
+
+var utils = require('jezebel/utils');
+var context;
+
+function reloadModule(path) {
+  delete require.cache[path];
+  try {
+    context.$$ = require(path);
+  }
+  catch(e) {
+    console.log("Error loading " + path);
+    console.log(e.stack);
+  }
+}
+
+exports.settings = {
+  onStart: function(replSession) {
+    context = replSession.context;
+  },
+  onChange: function(path, curr, prev) {
+    if (path.match(/.*app\/.*\.js$/)) {
+      // load the most recently changed module into the $$ variable in the REPL
+      reloadModule(path);
+    }
+  }
+};
+
+exports.files = utils.projectFiles;

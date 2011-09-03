@@ -1,0 +1,21 @@
+{
+  "name": "siren",
+  "description": "The official monitoring notification system.",
+  "version": "0.2.0",
+  "author": "Ben Rady <brady@drw.com>",
+  "repository": {"type": "git", "url": "http://git@git:viz/siren.git"},
+  "dependencies": {
+    "express": "2.3.2",
+    "nodemailer": "0.1.11",
+    "underscore": "1.1.6",
+    "wsclient": "0.1.5",
+    "carrier": "0.1.2"
+  },
+  "devDependencies": {
+    "jsdom": "0.2.0",
+    "horseman": ">= 0.2.1"
+  },
+  "main": "./app/siren",
+  "engines": {"node": ">= 0.4.0"}
+}
+
